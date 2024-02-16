@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style> table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          th, td {
+            text-align: left;
+            padding: 8px;
+          }
+          th {
+            background-color: #04AA6D;
+            color: white;
+          }
+          tr:nth-child(even){background-color: #f2f2f2}
+          {
+            text-align : center;
+            margin-left: auto;  
+            margin-right: auto;}
+           h3{text-align : center;}
+           h2{text-align : center;}
+    body{background-color: gray}
+            
+        </style>
+    </head><br>
+    <h2>WELL-COME TO TABLE</h2>
+    <h4>Login user:- {{ request.user}} </h4>
+    <body><br.><br>
+        <form  action={% url 'profunk' %} method="POST" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <label for="cars">Choose-Level</label>
+            <select name="cars" id="cars">
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+            <button type ='submit'>select</button>
+          </form>
+
+
+        <table class="table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>Tital</th>
+                    <th>Description</th>
+                    <th>Due date</th>
+                    <th>Priory level</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                
+                <tr>
+                    <td>{{ i.title}}</td>
+                    <td>{{ i.description}}</td>
+                    <td>{{ i.duedate}}</td>
+                    <td>{{ i.priority}}</td>
+
+                    <td>
+                        <a href="/update/{{i.id}}">update</a>
+                        <a href="/delete/{{i.id}}">delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <h3><a href="{% url 'create' %}"class="button-link">Create-Form</a></h3>
+            <h3><a href="{% url 'search' %}"class="button-link">Search-Task</a></h3>
+            <h4><a href="{% url 'logout' %}"class="button-link">Logout</a></h4>
+            
+        </table><br><br>
+
+    </body>
+</html>

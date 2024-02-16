@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form method="POST" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type ='submit'>submit</button><br><br>
+            <button ><a href="{% url 'singup' %}"class="button-link">Sing-up</a></button>
+    </body>
+</html>
